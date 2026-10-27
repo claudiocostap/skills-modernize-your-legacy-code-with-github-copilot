@@ -1,0 +1,11 @@
+{
+  "name": "modernize-legacy-code-accounting",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Modernized Node.js equivalent of the legacy COBOL accounting app",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test",
+    "start": "node src/accounting/index.js"
+  }
+}
