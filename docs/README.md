@@ -66,6 +66,41 @@ Limites do armazenamento:
 4. Em créditos e débitos autorizados, `Operations` solicita a gravação do saldo atualizado.
 5. O resultado é exibido no terminal.
 
+## Diagrama de fluxo do sistema
+
+```mermaid
+flowchart TD
+    A[Usuário] --> B[MainProgram]
+    B --> C{Escolhe opção}
+    C -->|1| D[Operations TOTAL]
+    C -->|2| E[Operations CREDIT]
+    C -->|3| F[Operations DEBIT]
+    C -->|4| G[Encerrar sistema]
+
+    D --> H[DataProgram READ]
+    E --> H
+    F --> H
+
+    H --> I[(STORAGE-BALANCE)]
+    I --> D
+    I --> E
+    I --> F
+
+    E --> J[Somar valor ao saldo]
+    F --> K{Saldo suficiente?}
+    K -->|Sim| L[Subtrair valor do saldo]
+    K -->|Não| M[Mensagem: saldo insuficiente]
+
+    J --> N[Operations grava saldo]
+    L --> N
+    D --> O[Exibe saldo no terminal]
+    E --> P[Exibe resultado da operação]
+    F --> P
+    M --> B
+    N --> B
+    G --> Q[Fim]
+```
+
 ## Requisitos de negócio refletidos no código
 
 | Requisito | Comportamento implementado |
